@@ -1,0 +1,11 @@
+extends base
+
+block content
+  article
+    h1=page.title
+    .info
+      span.date=page.date.format(config.date_format)
+      |, 
+      | !{list_categories(page.categories, {style: none, show_count: false})}
+
+    !=page.content

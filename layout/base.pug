@@ -1,0 +1,28 @@
+doctype html
+
+html
+  head
+    title notebook &mdash; nick loewen
+    link(rel='stylesheet', href=url_for('/css/style.css'))
+
+  body
+
+    header
+      h1: a(href=config.root)= config.title
+      .category-selector
+        label(for='categories') notebook:
+        select#categories(onchange='location = this.options[this.selectedIndex].value;')
+          option(value='/') all
+          each category in site.categories.data
+            if page.category == category.name
+              - var isCurrent = true
+            else
+              - var isCurrent = false
+            option(
+              value='/notebook/' + category.name
+              selected=isCurrent
+            )= category.name
+        span.select-arrow &#8623;
+
+    .content
+      block content

@@ -1,0 +1,12 @@
+extends base
+
+block content
+
+  each post in page.posts.toArray()
+      article.post-preview
+        h1: a(href=url_for(post.path))= post.title
+        .info
+          span.date=post.date.format(config.date_format)
+        .excerpt!= post.excerpt
+        .more
+          a(href=url_for(post.path)) Read more!
